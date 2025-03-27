@@ -1,4 +1,5 @@
 import unittest
+from app.utility import initialize_test_connection
 
 try:
     from .preview import Params, preview_function
@@ -26,14 +27,16 @@ class TestPreviewFunction(unittest.TestCase):
     """
 
     def test_api_endpoint_resistance(self):
-        response, params = "734336", {"api_endpoint": "resistance"}
+        id_connection = initialize_test_connection()
+        response, params = id_connection, {"server": "http://20.117.225.136:8000", "api_endpoint": "resistance"}
         result = preview_function(response, params)
 
         self.assertIn("preview", result)
         self.assertIsNotNone(result["preview"])
 
     def test_api_endpoint_resistors(self):
-        response, params = "734336", {"api_endpoint": "resistors"}
+        id_connection = initialize_test_connection()
+        response, params = id_connection, {"server": "http://20.117.225.136:8000", "api_endpoint": "resistors"}
         result = preview_function(response, params)
 
         self.assertIn("preview", result)

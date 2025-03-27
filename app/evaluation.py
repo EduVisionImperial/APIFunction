@@ -6,6 +6,7 @@ import dotenv
 dotenv.load_dotenv()
 
 class Params(TypedDict):
+    server: str
     api_endpoint: str
 
 
@@ -38,14 +39,11 @@ def evaluation_function(response: Any, answer: Any, params: Params) -> Result:
     """
 
     try:
-        connection = os.environ.get('CONNECTION')
-        if not connection:
-            raise ValueError("CONNECTION environment is not set")
 
         if len(response) != 6:
             raise Exception("Connection ID must be 6 characters long")
 
-        api_response = requests.get(f"{connection}/{params['api_endpoint']}/{response}")
+        api_response = requests.get(f"{params['server']}/{params['api_endpoint']}{response}")
         api_response.raise_for_status()
         api_data = api_response.json()
         is_correct = api_data == answer
