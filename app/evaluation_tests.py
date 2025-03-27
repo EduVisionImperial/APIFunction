@@ -25,12 +25,23 @@ class TestEvaluationFunction(unittest.TestCase):
     as it should.
     """
 
-    def test_returns_is_correct_true(self):
-        response, answer, params = None, None, Params()
+    def test_default_variables_for_resistance(self):
+        response, answer, params = "535037", 0.0, {"api_endpoint": "resistance"}
         result = evaluation_function(response, answer, params)
 
         self.assertEqual(result.get("is_correct"), True)
 
+    def test_default_variables_for_resistors_check(self):
+        response, answer, params = "535037", [], {"api_endpoint": "resistors"}
+        result = evaluation_function(response, answer, params)
+
+        self.assertEqual(result.get("is_correct"), True)
+
+    def test_response_length(self):
+        response, answer, params = "5337", 0.0, {"api_endpoint": "resistance"}
+        result = evaluation_function(response, answer, params)
+
+        self.assertEqual(result.get("is_correct"), False)
 
 if __name__ == "__main__":
     unittest.main()

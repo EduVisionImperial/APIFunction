@@ -35,9 +35,15 @@ def evaluation_function(response: Any, answer: Any, params: Params) -> Result:
     return types and that evaluation_function() is the main function used
     to output the evaluation response.
     """
-
     try:
-        api_response = requests.get(f"{os.getenv('CONNECTION')}/{params['api_endpoint']}/{response}")
+        # connection = os.getenv('CONNECTION')
+        # if not connection:
+        #     raise ValueError("CONNECTION environment is not set")
+        #
+        # if len(response) != 6:
+        #     raise Exception("Connection ID must be 6 characters long")
+
+        api_response = requests.get(f"http://20.117.225.136:8000/{params['api_endpoint']}/{response}")
         api_response.raise_for_status()
         api_data = api_response.json()
         is_correct = api_data == answer
