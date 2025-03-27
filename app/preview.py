@@ -1,3 +1,4 @@
+import os
 from typing import Any, TypedDict
 import requests
 
@@ -30,7 +31,12 @@ def preview_function(response: Any, params: Params) -> Result:
     split into many) is entirely up to you.
     """
     try:
-        api_response = requests.get(f"http://20.117.225.136:8000/{params['api_endpoint']}/{response}")
+
+        connection = os.getenv('CONNECTION')
+        if not connection:
+            raise ValueError("CONNECTION environment is not set")
+
+        api_response = requests.get(f"{connection}/{params['api_endpoint']}/{response}")
         api_response.raise_for_status()
         api_data = api_response.json()
     except requests.RequestException as e:
