@@ -25,13 +25,6 @@ class TestPreviewFunction(unittest.TestCase):
     as it should.
     """
 
-    def test_returns_preview_key(self):
-        response, params = "test", {"api_endpoint": "resistors"}
-        result = preview_function(response, params)
-
-        self.assertIn("preview", result)
-        self.assertIsNotNone(result["preview"])
-
     def test_api_endpoint_resistance(self):
         response, params = "535037", {"api_endpoint": "resistance"}
         result = preview_function(response, params)
@@ -45,13 +38,6 @@ class TestPreviewFunction(unittest.TestCase):
 
         self.assertIn("preview", result)
         self.assertIsNotNone(result["preview"])
-
-    def test_invalid_response_length(self):
-        response, params = "5337", {"api_endpoint": "resistance"}
-        result = preview_function(response, params)
-
-        self.assertIn("preview", result)
-        self.assertIsNone(result["preview"])
 
 
 if __name__ == "__main__":

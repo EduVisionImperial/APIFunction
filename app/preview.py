@@ -1,6 +1,9 @@
 import os
 from typing import Any, TypedDict
 import requests
+import dotenv
+
+dotenv.load_dotenv()
 
 class Params(TypedDict):
     api_endpoint: str
@@ -31,7 +34,6 @@ def preview_function(response: Any, params: Params) -> Result:
     split into many) is entirely up to you.
     """
     try:
-
         connection = os.getenv('CONNECTION')
         if not connection:
             raise ValueError("CONNECTION environment is not set")

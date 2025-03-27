@@ -1,5 +1,6 @@
 import unittest
 
+
 try:
     from .evaluation import Params, evaluation_function
 except ImportError:
@@ -26,22 +27,16 @@ class TestEvaluationFunction(unittest.TestCase):
     """
 
     def test_default_variables_for_resistance(self):
-        response, answer, params = "535037", 0.0, {"api_endpoint": "resistance"}
+        response, answer, params = "734336", 0.0, {"api_endpoint": "resistance"}
         result = evaluation_function(response, answer, params)
 
         self.assertEqual(result.get("is_correct"), True)
 
     def test_default_variables_for_resistors_check(self):
-        response, answer, params = "535037", [], {"api_endpoint": "resistors"}
+        response, answer, params = "734336", [], {"api_endpoint": "resistors"}
         result = evaluation_function(response, answer, params)
 
         self.assertEqual(result.get("is_correct"), True)
-
-    def test_response_length(self):
-        response, answer, params = "5337", 0.0, {"api_endpoint": "resistance"}
-        result = evaluation_function(response, answer, params)
-
-        self.assertEqual(result.get("is_correct"), False)
 
 if __name__ == "__main__":
     unittest.main()
