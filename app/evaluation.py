@@ -2,6 +2,7 @@ import os
 from typing import Any, TypedDict
 import requests
 import dotenv
+
 dotenv.load_dotenv()
 
 class Params(TypedDict):
