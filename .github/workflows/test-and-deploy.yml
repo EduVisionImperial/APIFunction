@@ -23,7 +23,7 @@ jobs:
 
     env:
       SCHEMAS_URL: https://raw.githubusercontent.com/lambda-feedback/request-response-schemas/master/
-      CONNECTION: ${{secrets.CONNECTION}}
+      CONNECTION: http://20.117.225.136:8000
 
     steps:
       - name: Checkout
