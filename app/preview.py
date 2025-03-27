@@ -34,7 +34,7 @@ def preview_function(response: Any, params: Params) -> Result:
     split into many) is entirely up to you.
     """
     try:
-        connection = os.getenv('CONNECTION')
+        connection = os.environ.get('CONNECTION')
         if not connection:
             raise ValueError("CONNECTION environment is not set")
 
