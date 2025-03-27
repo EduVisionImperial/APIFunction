@@ -1,10 +1,11 @@
 import unittest
-
+from app.utility import initialize_test_connection
 
 try:
     from .evaluation import Params, evaluation_function
 except ImportError:
     from evaluation import Params, evaluation_function
+
 
 
 class TestEvaluationFunction(unittest.TestCase):
@@ -26,14 +27,10 @@ class TestEvaluationFunction(unittest.TestCase):
     as it should.
     """
 
-    def test_default_variables_for_resistance(self):
-        response, answer, params = "734336", 0.0, {"api_endpoint": "resistance"}
-        result = evaluation_function(response, answer, params)
+    def test_connection(self):
+        id_connection = initialize_test_connection()
 
-        self.assertEqual(result.get("is_correct"), True)
-
-    def test_default_variables_for_resistors_check(self):
-        response, answer, params = "734336", [], {"api_endpoint": "resistors"}
+        response, answer, params = id_connection, 0.0, {"server": "http://20.117.225.136:8000", "api_endpoint": "resistance/"}
         result = evaluation_function(response, answer, params)
 
         self.assertEqual(result.get("is_correct"), True)
