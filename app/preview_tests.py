@@ -26,14 +26,14 @@ class TestPreviewFunction(unittest.TestCase):
     """
 
     def test_api_endpoint_resistance(self):
-        response, params = "535037", {"api_endpoint": "resistance"}
+        response, params = "734336", {"api_endpoint": "resistance"}
         result = preview_function(response, params)
 
         self.assertIn("preview", result)
         self.assertIsNotNone(result["preview"])
 
     def test_api_endpoint_resistors(self):
-        response, params = "535037", {"api_endpoint": "resistors"}
+        response, params = "734336", {"api_endpoint": "resistors"}
         result = preview_function(response, params)
 
         self.assertIn("preview", result)

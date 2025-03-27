@@ -38,7 +38,7 @@ def evaluation_function(response: Any, answer: Any, params: Params) -> Result:
     """
 
     try:
-        connection = os.getenv('CONNECTION')
+        connection = os.environ.get('CONNECTION')
         if not connection:
             raise ValueError("CONNECTION environment is not set")
 
